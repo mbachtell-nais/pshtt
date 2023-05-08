@@ -79,10 +79,9 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
-    python_requires=">=3.10",
+    python_requires=">=3.7",
     # What does your project relate to?
     keywords="https best practices",
     packages=find_packages(where="src"),
@@ -99,7 +98,7 @@ setup(
         "requests>=2.18.4",
         # This is necessary to support the python_requires kwarg
         "setuptools >= 24.2.0",
-        "sslyze>=3.0.0,<6.0.0",
+        "sslyze>=3.0.0,<5.0.0",
         "wget>=3.2",
     ],
     extras_require={
