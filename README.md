@@ -1,3 +1,7 @@
+# This is a Fork of the Original Project #
+
+This fork is intended to be used as a temporary operational band-aid until the official pshtt library is updated to work beyond Python 3.7. It has been tested to work up through Python 3.10.* .  Once the official library is updated this will be sunsetted. 
+
 # Pushing HTTPS 🔒 #
 
 [![Latest Version](https://img.shields.io/pypi/v/pshtt.svg)](https://pypi.org/project/pshtt/)
