@@ -27,7 +27,7 @@ from sslyze import (  # type: ignore
 )
 from sslyze.errors import ConnectionToServerFailed  # type: ignore
 from sslyze.plugins.certificate_info.implementation import (  # type: ignore
-    CertificateInfoExtraArguments,
+    CertificateInfoExtraArgument,
 )
 from sslyze.plugins.scan_commands import ScanCommand  # type: ignore
 import urllib3
@@ -696,7 +696,7 @@ def https_check(endpoint):
         command = ScanCommand.CERTIFICATE_INFO
         if CA_FILE is not None:
             command_extra_args = {
-                command: CertificateInfoExtraArguments(custom_ca_file=Path(CA_FILE))
+                command: CertificateInfoExtraArgument(custom_ca_file=Path(CA_FILE))
             }
             scan_request = ServerScanRequest(
                 server_info=server_info,
@@ -874,7 +874,7 @@ def https_check(endpoint):
                         scanner = Scanner()
                         command = ScanCommand.CERTIFICATE_INFO
                         command_extra_args = {
-                            command: CertificateInfoExtraArguments(
+                            command: CertificateInfoExtraArgument(
                                 custom_ca_file=Path(PT_INT_CA_FILE)
                             )
                         }
