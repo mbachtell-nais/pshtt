@@ -21,8 +21,8 @@ from publicsuffix import PublicSuffixList, fetch  # type: ignore
 import requests
 from sslyze import (  # type: ignore
     Scanner,
-    ServerConnectivityTester,
-    ServerNetworkLocationViaDirectConnection,
+    ServerTlsProbingResult,
+    ServerNetworkLocation,
     ServerScanRequest,
 )
 from sslyze.errors import ConnectionToServerFailed  # type: ignore
@@ -650,15 +650,12 @@ def https_check(endpoint):
     # remove the https:// from prefix for sslyze
     try:
         hostname = endpoint.url[8:]
-        server_location = (
-            ServerNetworkLocationViaDirectConnection.with_ip_address_lookup(
-                hostname=hostname, port=443
-            )
-        )
-        server_tester = ServerConnectivityTester()
-        server_info = server_tester.perform(server_location)
+        ip = ServerNetworkLocation._do_dns_lookup(hostname=hostname, port=443)
+        server_location = ServerNetworkLocation(hostname=hostname, port=443, ip=ip)
+  
+        server_tester = ServerTlsProbingResult()
+        server_info = server_tester.check_connectivity_to_server(server_location)
         endpoint.live = True
-        ip = server_location.ip_address
         if endpoint.ip is None:
             endpoint.ip = ip
         else:
